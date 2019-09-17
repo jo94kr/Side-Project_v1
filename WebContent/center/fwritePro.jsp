@@ -17,11 +17,11 @@
 		//	MultipartRequest multi = new MultipartRequest(request, 업로드할폴더명, 파일최대크기, 한글처리, 파일명이 동일하면 이름변경);
 		// upload 폴더 만들기 => upload 물리적 경로
 		String uploadPath = request.getRealPath("/upload");
-		System.out.println(uploadPath);
+		// 첨부파일 크기
 		int maxSize = 5 * 1024 * 1024; // 5M
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
-
+		
 		//request  name,pass,subject,content 파라미터 가져와서 => 변수 저장
 		String name = multi.getParameter("name");
 		String pass = multi.getParameter("pass");

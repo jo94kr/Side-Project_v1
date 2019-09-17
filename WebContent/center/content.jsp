@@ -57,6 +57,12 @@
 			// num에 해당하는 게시판 글 가져오기
 			// BoardBean bb = getBoard(num)
 			BoardBean bb = bdao.getBoard(num);
+
+			// content 엔터키 "\r\n" => "<br>"
+			String content = bb.getContent();
+			if (content != null) {
+				content = content.replace("\r\n", "<br>");
+			}
 		%>
 		<!-- 게시판 -->
 		<article>
@@ -82,7 +88,7 @@
 					if (bb.getFile() != null) {
 				%>
 				<tr>
-					<td>파일</td>
+					<td>첨부파일</td>
 					<td colspan="3"><a href="../upload/<%=bb.getFile()%>"><%=bb.getFile()%></a> <img src="../upload/<%=bb.getFile()%>" width="50" height="50"></td>
 				</tr>
 				<%
@@ -90,7 +96,7 @@
 				%>
 				<tr>
 					<th class="tno">내용</th>
-					<td colspan="3"><%=bb.getContent()%></td>
+					<td colspan="3"><%=content%></td>
 				</tr>
 			</table>
 			<div id="table_search">
@@ -103,8 +109,7 @@
 						//   세션값  글쓴이 일치하면  글수정 글삭제 버튼 보이기
 						if (id.equals(bb.getName())) {
 				%>
-				<input type="button" value="글수정" class="btn" onclick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
-				<input type="button" value="글삭제" class="btn" onclick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
+				<input type="button" value="글수정" class="btn" onclick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'"> <input type="button" value="글삭제" class="btn" onclick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
 				<%
 					}
 					}

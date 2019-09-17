@@ -101,8 +101,8 @@
 								// for   자바빈 <= 배열한칸 정보
 								BoardBean bb = (BoardBean) boardList.get(i);
 					%>
-					<tr onclick="location.href = '../center/content.jsp?num=<%=bb.getNum()%>'">
-						<td class="contxt"><a href="../center/content.jsp?num=<%=bb.getNum()%>&pageNum<%=pageNum%>"><%=bb.getSubject()%></a></td>
+					<tr onclick="location.href = '../center/content.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
+						<td class="contxt"><a href="../center/content.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>"><%=bb.getSubject()%></a></td>
 						<td><%=sdf.format(bb.getDate())%></td>
 					</tr>
 					<%

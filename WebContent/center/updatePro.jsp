@@ -1,3 +1,5 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@page import="board.BoardDAO"%>
 <%@page import="board.BoardBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -10,6 +12,7 @@
 <body>
 	<%
 		request.setCharacterEncoding("utf-8");
+
 		//int num =  파라미터 num 가져와서 저장
 		int num = Integer.parseInt(request.getParameter("num"));
 		String pageNum = request.getParameter("pageNum");

@@ -60,9 +60,9 @@
 		<!-- 게시판 -->
 		<article>
 			<h1>Notice Update</h1>
-			<form action="updatePro.jsp" method="post">
-				<input type="hidden" name="num" value="<%=num%>">
-				<input type="hidden" name="pageNum" value="<%=pageNum%>">
+			<form action="fupdatePro.jsp" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="num" value="<%=num%>"> <input type="hidden" name="pageNum" value="<%=pageNum%>">
+				<input type="hidden" name="oldfile" value="<%=bb.getFile()%>">
 				<table id="notice">
 					<tr>
 						<td>글쓴이</td>
@@ -75,6 +75,10 @@
 					<tr>
 						<td>제목</td>
 						<td><input type="text" name="subject" value="<%=bb.getSubject()%>"></td>
+					</tr>
+					<tr>
+						<td>파일</td>
+						<td><input type="file" name="file"></td>
 					</tr>
 					<tr>
 						<td>내용</td>

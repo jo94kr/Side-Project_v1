@@ -1,4 +1,3 @@
-<%@page import="member.MemberDAO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="board.BoardBean"%>
 <%@page import="java.util.List"%>
@@ -83,6 +82,14 @@
 			List boardList = bdao.getBoardList(startRow, pageSize);
 			// 날짜형태 변경 => 문자열 변경
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+
+			// 번호 구하기
+			int num = 0;
+			// 전체 글개수 count    페이지 currentPage      시작번호
+			//          30        -  1-1 => 0*10         =>    30
+			//          30        -  2-1 => 1*10         =>    20
+			//          30        -  3-1 => 2*10         =>    10
+			num = count - (currentPage - 1) * pageSize;
 		%>
 		<!-- 게시판 -->
 		<article>
@@ -94,17 +101,16 @@
 					<th class="twrite">Writer</th>
 					<th class="tdate">Date</th>
 					<th class="tread">Read</th>
-					<%
-						if (count != 0) {
-							for (int i = 0; i < boardList.size(); i++) {
-								// 자바빈 <= 배열한칸 정보
-								BoardBean bb = (BoardBean) boardList.get(i);
-					%>
-				
-				<tr onclick="location.href = 'content.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
-					<td><%=bb.getNum()%></td>
-
-					<td class="left"><a href="content.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>"><%=bb.getSubject()%></a></td>
+				</tr>
+				<%
+					if (count != 0) {
+						for (int i = 0; i < boardList.size(); i++) {
+							// 자바빈 <= 배열한칸 정보 
+							BoardBean bb = (BoardBean) boardList.get(i);
+				%>
+				<tr onclick="location.href='content.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
+					<td><%=num--%></td>
+					<td class="left"><%=bb.getSubject()%></td>
 					<td><%=bb.getName()%></td>
 					<td><%=sdf.format(bb.getDate())%></td>
 					<td><%=bb.getReadcount()%></td>
@@ -115,20 +121,22 @@
 				%>
 			</table>
 			<%
-				// 세션값 가져오기
-				// 세션값이 있으면 글쓰기 버튼 보이기
+				//  세션값 가져오기
 				String id = (String) session.getAttribute("id");
-
+				// 세션값이 있으면  글쓰기 버튼 보이기
 				if (id != null) {
 			%>
 			<div id="table_search">
-				<input type="button" name="button" value="글쓰기" class="btn" onclick="location.href='writeForm.jsp'">
+				<input type="button" value="글쓰기" class="btn" onclick="location.href='fwriteForm.jsp'">
 			</div>
 			<%
 				}
 			%>
 			<div id="table_search">
-				<input type="text" name="search" class="input_box"> <input type="button" value="search" class="btn">
+				<form action="noticeSearch.jsp" method="get">
+
+					<input type="text" name="search" class="input_box"> <input type="submit" value="search" class="btn">
+				</form>
 			</div>
 			<div class="clear"></div>
 			<div id="page_control">

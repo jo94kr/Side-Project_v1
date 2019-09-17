@@ -10,47 +10,76 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>WebContent/center/writePro.jsp</h1>
 	<%
 		// cos.jar 프로그램 이용 파일업로드	
 		// MultipartRequest 객체생성
 		//	MultipartRequest multi = new MultipartRequest(request, 업로드할폴더명, 파일최대크기, 한글처리, 파일명이 동일하면 이름변경);
 		// upload 폴더 만들기 => upload 물리적 경로
 		String uploadPath = request.getRealPath("/upload");
-		System.out.println(uploadPath);
+		// 첨부파일 크기
 		int maxSize = 5 * 1024 * 1024; // 5M
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
 
-		//request  name,pass,subject,content 파라미터 가져와서 => 변수 저장
-		String name = multi.getParameter("name");
+		//int num =  파라미터 num 가져와서 저장
+		int num = Integer.parseInt(multi.getParameter("num"));
+		String pageNum = multi.getParameter("pageNum");
 		String pass = multi.getParameter("pass");
+		String name = multi.getParameter("name");
 		String subject = multi.getParameter("subject");
 		String content = multi.getParameter("content");
-		
+		String oldfile = multi.getParameter("oldfile");
+
 		String file = multi.getFilesystemName("file");
 		String org_file = multi.getOriginalFileName("file");
 
-		// 자바빈   패키지 board 파일이름 BoardBean
-		// BoardBean bb 객체생성
+		// BoardBean bb
 		BoardBean bb = new BoardBean();
 
-		// 자바빈 멤버변수 <= 파라미터 저장
-		bb.setName(name);
+		// 멤버변수 <= 파라미터 값
+		bb.setNum(num);
 		bb.setPass(pass);
+		bb.setName(name);
 		bb.setSubject(subject);
 		bb.setContent(content);
-		bb.setFile(file);
 
-		// 디비자바파일 패키지 board 파일이름 BoardDAO
+		if (file == null) {
+			bb.setFile(oldfile);
+		} else {
+			bb.setFile(file);
+
+		}
+
 		// BoardDAO bdao 객체생성
 		BoardDAO bdao = new BoardDAO();
 
-		// insertBoard(bb) 메서드호출
-		bdao.insertBoard(bb);
+		// int check = checkNum(bb)
+		int check = bdao.checkNum(bb);
 
-		// 글목록 이동 notice.jsp
-		response.sendRedirect("notice.jsp");
+		// check == 1 이면 num, pass 일치 수정 updateBoard(bb) 호출 list.jsp
+		if (check == 1) {
+			bdao.updateBoard(bb);
+			response.sendRedirect("notice.jsp?pageNum=" + pageNum);
+		}
+		// check == 0 이면 "비밀번호틀림" 뒤로이동
+		else if (check == 0) {
+	%>
+	<script>
+		alert("비밀번호틀림");
+		history.back(); //뒤로이동
+	</script>
+	<%
+		}
+		// check == -1 이면 "글없음" 뒤로이동
+
+		else if (check == -1) {
+	%>
+	<script>
+		alert("글없음");
+		history.back(); //뒤로이동
+	</script>
+	<%
+		}
 	%>
 </body>
 </html>

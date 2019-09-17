@@ -57,7 +57,7 @@
 		<!-- 게시판 -->
 		<article>
 			<h1>Notice Write</h1>
-			<form action="writePro.jsp" method="post">
+			<form action="fwritePro.jsp" method="post" enctype="multipart/form-data">
 				<table id="notice">
 					<tr>
 						<td>글쓴이</td>
