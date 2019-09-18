@@ -88,8 +88,8 @@
 					if (bb.getFile() != null) {
 				%>
 				<tr>
-					<td>첨부파일</td>
-					<td colspan="3"><a href="../upload/<%=bb.getFile()%>"><%=bb.getFile()%></a> <img src="../upload/<%=bb.getFile()%>" width="50" height="50"></td>
+					<th class="tno">첨부파일</th>
+					<td colspan="3"><a href="../upload/<%=bb.getFile()%>"><%=bb.getFile()%></a><br><img src="../upload/<%=bb.getFile()%>" width="50" height="50"></td>
 				</tr>
 				<%
 					}
@@ -109,7 +109,7 @@
 						//   세션값  글쓴이 일치하면  글수정 글삭제 버튼 보이기
 						if (id.equals(bb.getName())) {
 				%>
-				<input type="button" value="글수정" class="btn" onclick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'"> <input type="button" value="글삭제" class="btn" onclick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'">
+				<input type="button" value="글수정" class="btn" onclick="location.href='updateForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>'"> <input type="button" value="글삭제" class="btn" onclick="location.href='deleteForm.jsp?num=<%=bb.getNum()%>&pageNum=<%=pageNum%>&name=<%=bb.getName()%>'">
 				<%
 					}
 					}

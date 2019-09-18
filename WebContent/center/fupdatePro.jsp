@@ -29,9 +29,9 @@
 		String subject = multi.getParameter("subject");
 		String content = multi.getParameter("content");
 		String oldfile = multi.getParameter("oldfile");
-
 		String file = multi.getFilesystemName("file");
 		String org_file = multi.getOriginalFileName("file");
+		String id = (String) session.getAttribute("id");
 
 		// BoardBean bb
 		BoardBean bb = new BoardBean();
@@ -53,29 +53,14 @@
 		// BoardDAO bdao 객체생성
 		BoardDAO bdao = new BoardDAO();
 
-		// int check = checkNum(bb)
-		int check = bdao.checkNum(bb);
-
-		// check == 1 이면 num, pass 일치 수정 updateBoard(bb) 호출 list.jsp
-		if (check == 1) {
+		if (id.equals(name)) {
 			bdao.updateBoard(bb);
 			response.sendRedirect("notice.jsp?pageNum=" + pageNum);
 		}
-		// check == 0 이면 "비밀번호틀림" 뒤로이동
-		else if (check == 0) {
+			else{
 	%>
 	<script>
-		alert("비밀번호틀림");
-		history.back(); //뒤로이동
-	</script>
-	<%
-		}
-		// check == -1 이면 "글없음" 뒤로이동
-
-		else if (check == -1) {
-	%>
-	<script>
-		alert("글없음");
+		alert("회원정보 불일치");
 		history.back(); //뒤로이동
 	</script>
 	<%

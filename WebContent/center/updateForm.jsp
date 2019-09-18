@@ -61,16 +61,11 @@
 		<article>
 			<h1>Notice Update</h1>
 			<form action="fupdatePro.jsp" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="num" value="<%=num%>"> <input type="hidden" name="pageNum" value="<%=pageNum%>">
-				<input type="hidden" name="oldfile" value="<%=bb.getFile()%>">
+				<input type="hidden" name="num" value="<%=num%>"> <input type="hidden" name="pageNum" value="<%=pageNum%>"> <input type="hidden" name="oldfile" value="<%=bb.getFile()%>">
 				<table id="notice">
 					<tr>
 						<td>글쓴이</td>
-						<td><input type="text" name="name" value="<%=bb.getName()%>"></td>
-					</tr>
-					<tr>
-						<td>비밀번호</td>
-						<td><input type="password" name="pass"></td>
+						<td><input type="text" name="name" value="<%=bb.getName()%>" readonly></td>
 					</tr>
 					<tr>
 						<td>제목</td>

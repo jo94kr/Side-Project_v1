@@ -16,36 +16,25 @@
 	<%
 		//int num =  파라미터 num 가져와서 저장
 		int num = Integer.parseInt(request.getParameter("num"));
-		String pass = request.getParameter("pass");
 		String pageNum = request.getParameter("pageNum");
+		String name = request.getParameter("name");
+		String id = (String) session.getAttribute("id");
 
 		BoardBean bb = new BoardBean();
 
 		// 멤버변수 <= 파라미터 값
 		bb.setNum(num);
-		bb.setPass(pass);
+		bb.setName(name);
 
 		// BoardDAO bdao 객체생성
 		BoardDAO bdao = new BoardDAO();
 
-		// int check = checkNum(bb)
-		int check = bdao.checkNum(bb);
-
-		if (check == 1) {
+		if (id.equals(name)) {
 			bdao.deleteBoard(bb);
 			response.sendRedirect("notice.jsp?pageNum=" + pageNum);
 		}
 
-		else if (check == 0) {
-	%>
-	<script>
-		alert("비밀번호틀림");
-		history.back(); //뒤로이동
-	</script>
-	<%
-		}
-
-		else if (check == -1) {
+		else {
 	%>
 	<script>
 		alert("글없음");

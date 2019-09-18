@@ -48,6 +48,7 @@
 			//int num =  파라미터 num 가져와서 저장
 			int num = Integer.parseInt(request.getParameter("num"));
 			String pageNum = request.getParameter("pageNum");
+			String name = request.getParameter("name");
 
 			// BoardDAO bdao 객체생성
 			BoardDAO bdao = new BoardDAO();
@@ -56,11 +57,8 @@
 		<article>
 			<h1>Notice Delete</h1>
 			<form action="deletePro.jsp" method="post">
-				<input type="hidden" name="num" value="<%=num%>"> <input type="hidden" name="pageNum" value="<%=pageNum%>">
+				<input type="hidden" name="num" value="<%=num%>"> <input type="hidden" name="pageNum" value="<%=pageNum%>"> <input type="hidden" name="name" value="<%=name%>">
 
-				<fieldset>
-					<label>Password</label> <input type="password" name="pass">
-				</fieldset>
 				<div id="table_search">
 					<input type="submit" value="글삭제" class="btn"> <input type="button" value="돌아가기" class="btn" onclick="history.back()">
 				</div>
