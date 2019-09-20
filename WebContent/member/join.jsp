@@ -20,6 +20,86 @@
 
  </script>
  <![endif]-->
+<script type="text/javascript">
+	function idcheckval() {
+		document.fr.idcheck.value = "uncheck";
+	}
+	
+	function iddupcheck() {
+		// 아이디 상자가 비어있으면 "아이디입력하세요" 포커스 함수호출한곳으로 되돌아가기
+		if (document.fr.id.value == "") {
+			alert("아이디 입력하세요.");
+			document.fr.id.focus();
+			return;
+		}
+		// 창열기 "join_idcheck.jsp", "", "width=, height="
+		else {
+			var fid = document.fr.id.value
+			window.open("join_idcheck.jsp?userid=" + fid, "",
+					"width = 300, height = 200");
+		}
+	}
+	
+	function joincheck() {
+		if (document.fr.id.value.length == 0) {
+			alert("아이디 입력하세요");
+			document.fr.id.focus();
+			return;
+		}
+		// 아이디 길이가 4자 아니면 "아이디길이는 4자입니다." 아이디 상자에 포커스 깜박
+		if (document.fr.id.value.length < 4){
+			alert("아이디길이는 4자 이상 입니다.")
+			document.fr.id.select();
+			document.fr.id.focus();
+			return;
+		}
+		if(document.fr.idcheck.value != "idcheck"){
+			alert("아이디 중복체크를 해주세요.");
+			return;
+			
+		}
+		if (document.fr.pass.value.length == 0) {
+			alert("비밀번호 입력하세요");
+			document.fr.pass.focus();
+			return;
+		}
+		// 비밀번호의 길이가 4~7자가 아니면 "비밀번호는 4~7자입니다." 비밀번호 상자에 포커스 깜박
+		if (document.fr.pass.value.length < 4 || document.fr.pass.value.length > 7){
+			alert("비밀번호는 4~7자입니다.")
+			document.fr.pass.value = "";
+			document.fr.pass.focus();
+			return;
+		}
+		if(document.fr.pass.value != document.fr.pass2.value){
+			alert("비밀번호가 일치하지 않습니다.")
+			document.fr.pass2.value = "";
+			document.fr.pass2.focus();
+			return;
+		}
+
+		if (document.fr.name.value.length == 0) {
+			alert("이름을 입력하세요");
+			document.fr.name.focus();
+			return;
+		}
+		
+		if (document.fr.email.value.length == 0) {
+			alert("E-Mail을 입력하세요");
+			document.fr.pass.focus();
+			return;
+		}
+		if(document.fr.email.value != document.fr.email2.value){
+			alert("E-Mail이 일치하지 않습니다.")
+			document.fr.email2.select();
+			document.fr.email2.focus();
+			return;
+		}
+		
+		
+		document.fr.submit();
+		return;
+	}
+</script>
 </head>
 <body>
 	<div id="wrap">
@@ -45,7 +125,7 @@
 			<form action="joinPro.jsp" id="join" name="fr" method="post">
 				<fieldset>
 					<legend>Basic Info</legend>
-					<label>User ID</label> <input type="text" name="id" class="id"> <input type="button" value="dup. check" class="dup">
+					<label>User ID</label><input type="text" name="id" class="id" onkeydown="idcheckval()"><input type="button" value="dup. check" class="dup" onclick="iddupcheck()"> <input type="hidden" name="idcheck" value="uncheck">
 					<br>
 					<label>Password</label> <input type="password" name="pass">
 					<br>
@@ -70,7 +150,8 @@
 				</fieldset>
 				<div class="clear"></div>
 				<div id="buttons">
-					<input type="submit" value="Submit" class="submit"> <input type="reset" value="Cancel" class="cancel">
+					<input type="button" value="회원가입" class="submit" onclick="joincheck()"> <input type="reset" value="Cancel" class="cancel">
+
 				</div>
 			</form>
 		</article>
