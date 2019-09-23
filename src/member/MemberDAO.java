@@ -98,6 +98,10 @@ public class MemberDAO {
 				mb.setPass(rs.getString("pass"));
 				mb.setName(rs.getString("name"));
 				mb.setReg_date(rs.getTimestamp("reg_date"));
+				mb.setEmail(rs.getString("email"));
+				mb.setAddress(rs.getString("address"));
+				mb.setPhone(rs.getString("phone"));
+				mb.setMobile(rs.getString("mobile"));
 			}
 
 		}
@@ -147,7 +151,7 @@ public class MemberDAO {
 			con = getConnection();
 
 			// 3단계 - 연결정보를 이용해서 sql구문을 만들고 실행할 객체생성 select
-//				       디비에 id정보가 있는지 조회(가져오기)
+			// 디비에 id정보가 있는지 조회(가져오기)
 			String sql = "select * from `member` where id=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
@@ -162,18 +166,18 @@ public class MemberDAO {
 				// 아이디있음
 
 				if (pass.equals(rs.getString("pass"))) {
-//						System.out.println("비밀번호 맞음");
+					// System.out.println("비밀번호 맞음");
 					check = 1; // 비밀번호 맞음
 				}
 
 				else {
-//						System.out.println("비밀번호틀림");
+					// System.out.println("비밀번호틀림");
 					check = 0; // 비밀번호 틀림
 				}
 			}
 
 			else {
-//					System.out.println("아이디 없음");
+				// System.out.println("아이디 없음");
 				check = -1; // 아이디없음
 			}
 		}
@@ -260,5 +264,96 @@ public class MemberDAO {
 		}
 		return check;
 	}// idcheck()
+
+	// updateMember()
+	public void updateMember(MemberBean mb) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			// 예외가 발생할 명령(디비연동, 외부파일연동,..)
+			// 1단계 드라이버 불러오기
+			// 2단계 디비연결 jspdb1 jspid jsppass
+			// 3단계 - 연결정보를 이용해서 sql구문을 만들고 실행할 객체생성
+			con = getConnection();
+			String sql = "update `member` set name = ?, email = ?, address = ?, phone = ?  where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getName());
+			pstmt.setString(2, mb.getEmail());
+			pstmt.setString(3, mb.getAddress());
+			pstmt.setString(4, mb.getPhone());
+			pstmt.setString(5, mb.getId());
+			pstmt.executeUpdate();
+		}
+		catch (Exception e) {
+			// 예외를 잡아서 처리
+			e.printStackTrace();
+		}
+		finally {
+			// 예외상관없이 마무리 작업 => 사용한 내장객체 기억장소 정리
+			if (rs != null)
+				try {
+					pstmt.close();
+				}
+				catch (Exception ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				}
+				catch (Exception ex) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				}
+				catch (SQLException ex) {
+				}
+		}
+	} // updateMember()
+
+	// updateMember()
+	public void updatePassword(MemberBean mb) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			// 예외가 발생할 명령(디비연동, 외부파일연동,..)
+			// 1단계 드라이버 불러오기
+			// 2단계 디비연결 jspdb1 jspid jsppass
+			// 3단계 - 연결정보를 이용해서 sql구문을 만들고 실행할 객체생성
+			con = getConnection();
+			String sql = "update `member` set pass = ? where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mb.getPass());
+			pstmt.setString(2, mb.getId());
+			pstmt.executeUpdate();
+		}
+		catch (Exception e) {
+			// 예외를 잡아서 처리
+			e.printStackTrace();
+		}
+		finally {
+			// 예외상관없이 마무리 작업 => 사용한 내장객체 기억장소 정리
+			if (rs != null)
+				try {
+					pstmt.close();
+				}
+				catch (Exception ex) {
+				}
+			if (pstmt != null)
+				try {
+					pstmt.close();
+				}
+				catch (Exception ex) {
+				}
+			if (con != null)
+				try {
+					con.close();
+				}
+				catch (SQLException ex) {
+				}
+		}
+	} // updateMember()
 
 }

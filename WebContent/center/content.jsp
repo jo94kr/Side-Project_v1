@@ -37,14 +37,7 @@
 		<!-- 메인이미지 -->
 
 		<!-- 왼쪽메뉴 -->
-		<nav id="sub_menu">
-			<ul>
-				<li><a href="#">Notice</a></li>
-				<li><a href="#">Public News</a></li>
-				<li><a href="#">Driver Download</a></li>
-				<li><a href="#">Service Policy</a></li>
-			</ul>
-		</nav>
+		<jsp:include page="../inc/sub_menu.jsp" />
 		<!-- 왼쪽메뉴 -->
 		<%
 			// int num  파라미터 가져오기
@@ -89,7 +82,7 @@
 				%>
 				<tr>
 					<th class="tno">첨부파일</th>
-					<td colspan="3"><a href="../upload/<%=bb.getFile()%>"><%=bb.getFile()%></a><br><img src="../upload/<%=bb.getFile()%>" width="50" height="50"></td>
+					<td colspan="3"><a href="../upload/<%=bb.getFile()%>"><%=bb.getFile()%></a> <br> <a href="../upload/<%=bb.getFile()%>" onclick="window.open(this.href,'','width=500, height=600'); return false;"><img src="../upload/<%=bb.getFile()%>" width="50" height="50"></a></td>
 				</tr>
 				<%
 					}

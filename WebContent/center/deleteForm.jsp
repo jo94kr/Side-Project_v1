@@ -35,14 +35,7 @@
 		<!-- 메인이미지 -->
 
 		<!-- 왼쪽메뉴 -->
-		<nav id="sub_menu">
-			<ul>
-				<li><a href="#">Notice</a></li>
-				<li><a href="#">Public News</a></li>
-				<li><a href="#">Driver Download</a></li>
-				<li><a href="#">Service Policy</a></li>
-			</ul>
-		</nav>
+		<jsp:include page="../inc/sub_menu.jsp" />
 		<!-- 왼쪽메뉴 -->
 		<%
 			//int num =  파라미터 num 가져와서 저장

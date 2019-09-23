@@ -16,7 +16,7 @@
 		}
 		else {
 	%>
-	<div id="login"><%=id%>님 | <a href="../member/logout.jsp">logout</a> | <a href="../member/update.jsp">회원정보수정</a>
+	<div id="login"><%=id%>님 | <a href="../member/logout.jsp">logout</a> | <a href="../member/updateForm.jsp">내정보</a>
 	</div>
 	<%
 		}

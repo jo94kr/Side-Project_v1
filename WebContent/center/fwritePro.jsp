@@ -21,13 +21,13 @@
 		int maxSize = 5 * 1024 * 1024; // 5M
 		MultipartRequest multi = new MultipartRequest(request, uploadPath, maxSize, "utf-8",
 				new DefaultFileRenamePolicy());
-		
+
 		//request  name,pass,subject,content 파라미터 가져와서 => 변수 저장
 		String name = multi.getParameter("name");
 		String pass = multi.getParameter("pass");
 		String subject = multi.getParameter("subject");
 		String content = multi.getParameter("content");
-		
+
 		String file = multi.getFilesystemName("file");
 		String org_file = multi.getOriginalFileName("file");
 
