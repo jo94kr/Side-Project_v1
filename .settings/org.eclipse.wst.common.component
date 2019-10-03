@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+<<<<<<< HEAD
     <wb-module deploy-name="FunWeb_last">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <property name="context-root" value="FunWeb_last"/>
         <property name="java-output-path" value="/FunWeb_last/build/classes"/>
+=======
+    <wb-module deploy-name="FunWeb">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/FunWeb/build/classes"/>
+        <property name="context-root" value="FunWeb"/>
+>>>>>>> refs/remotes/origin/master
     </wb-module>
 </project-modules>

@@ -22,7 +22,16 @@
 			mb.setId(id);
 			mb.setPass(pass1);
 			mdao.updatePassword(mb);
+<<<<<<< HEAD
 			response.sendRedirect("updateForm.jsp?userid=" + id);
+=======
+	%>
+	<script type="text/javascript">
+		alert("비밀번호 변경완료!");
+		window.close();
+	</script>
+	<%
+>>>>>>> refs/remotes/origin/master
 		} else {
 	%>
 	<script type="text/javascript">

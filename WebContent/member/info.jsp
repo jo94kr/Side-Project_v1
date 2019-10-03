@@ -1,5 +1,12 @@
 <%@page import="member.MemberBean"%>
 <%@page import="member.MemberDAO"%>
+<<<<<<< HEAD
+=======
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+>>>>>>> refs/remotes/origin/master
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

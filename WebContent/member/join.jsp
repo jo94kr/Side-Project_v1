@@ -145,9 +145,13 @@
 
 				<fieldset>
 					<legend>Optional</legend>
+<<<<<<< HEAD
 					<label>Address</label> <input type="text" id="address" name="address" readonly> <input type="button" onclick="execDaumPostcode()" value="주소 검색" class="dup">
 					<br>
 					<label>상세주소</label><input type="text" id="address" name="address2" value=" ">
+=======
+					<label>Address</label> <input type="text" id="address" name="address"> <input type="button" onclick="execDaumPostcode()" value="주소 검색">
+>>>>>>> refs/remotes/origin/master
 					<br>
 					<div id="map" style="width: 300px; height: 300px; margin-top: 10px; display: none"></div>
 					<script>

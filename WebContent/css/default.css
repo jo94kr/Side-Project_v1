@@ -3,8 +3,11 @@ body {
 	background-color: #898989; margin: 0px;
 	padding: 0px; font-size: 0.75em;
 	line-height: 1.2em; color: #333;
+<<<<<<< HEAD
 	background-image: url("../images/myke-simon-atsUqIm3wxo-unsplash.jpg");
 	background-size: contain;
+=======
+>>>>>>> refs/remotes/origin/master
 }/*배경색 #898989 밖여백 0 안여백 0 글자크기 0.75em
 줄간격 1.2em 글자색 #333*/
 #wrap{

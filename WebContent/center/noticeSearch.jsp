@@ -80,6 +80,7 @@
 			List boardList = bdao.getBoardList(startRow, pageSize, search);
 			// 날짜형태 변경 => 문자열 변경
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd");
+<<<<<<< HEAD
 
 			// 번호 구하기
 			int num = 0;
@@ -88,6 +89,16 @@
 			//          30        -  2-1 => 1*10         =>    20
 			//          30        -  3-1 => 2*10         =>    10
 			num = count - (currentPage - 1) * pageSize;
+=======
+			
+			// 번호 구하기
+						int num = 0;
+						// 전체 글개수 count    페이지 currentPage      시작번호
+						//          30        -  1-1 => 0*10         =>    30
+						//          30        -  2-1 => 1*10         =>    20
+						//          30        -  3-1 => 2*10         =>    10
+						num = count - (currentPage - 1) * pageSize;
+>>>>>>> refs/remotes/origin/master
 		%>
 		<!-- 게시판 -->
 		<article>

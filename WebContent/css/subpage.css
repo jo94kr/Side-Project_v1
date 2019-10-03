@@ -49,7 +49,11 @@ figcaption{text-align: center;color:#39F }
 .clear{clear: both;}
 /*------------------*/
 #sub_img_center{width: 971px;height: 179px;
+<<<<<<< HEAD
 background-image: url("../images/center/sub_back.jpg");
+=======
+background-image: url("../images/center/sub_back.png");
+>>>>>>> refs/remotes/origin/master
 background-repeat: no-repeat;
 background-position: left top;}
 /*너비 971 높이179 

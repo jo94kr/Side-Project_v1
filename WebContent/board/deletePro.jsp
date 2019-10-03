@@ -1,12 +1,9 @@
 <%@page import="board.BoardDAO"%>
 <%@page import="board.BoardBean"%>
-<<<<<<< HEAD
-=======
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
->>>>>>> refs/remotes/origin/master
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,25 +16,35 @@
 	<%
 		//int num =  파라미터 num 가져와서 저장
 		int num = Integer.parseInt(request.getParameter("num"));
-		String pageNum = request.getParameter("pageNum");
-		String name = request.getParameter("name");
-		String id = (String) session.getAttribute("id");
+		String pass = request.getParameter("pass");
 
 		BoardBean bb = new BoardBean();
 
 		// 멤버변수 <= 파라미터 값
 		bb.setNum(num);
-		bb.setName(name);
+		bb.setPass(pass);
 
 		// BoardDAO bdao 객체생성
 		BoardDAO bdao = new BoardDAO();
 
-		if (id.equals(name)) {
+		// int check = checkNum(bb)
+		int check = bdao.checkNum(bb);
+
+		if (check == 1) {
 			bdao.deleteBoard(bb);
-			response.sendRedirect("notice.jsp?pageNum=" + pageNum);
+			response.sendRedirect("list.jsp");
 		}
 
-		else {
+		else if (check == 0) {
+	%>
+	<script>
+		alert("비밀번호틀림");
+		history.back(); //뒤로이동
+	</script>
+	<%
+		}
+
+		else if (check == -1) {
 	%>
 	<script>
 		alert("글없음");

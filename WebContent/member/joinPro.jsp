@@ -19,7 +19,11 @@
 		String name = request.getParameter("name");
 		Timestamp reg_date = new Timestamp(System.currentTimeMillis());
 		String email = request.getParameter("email");
+<<<<<<< HEAD
 		String address = request.getParameter("address") + request.getParameter("address2");
+=======
+		String address = request.getParameter("address");
+>>>>>>> refs/remotes/origin/master
 		String phone = request.getParameter("phone");
 		String mobile = request.getParameter("mobile");
 
